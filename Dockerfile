@@ -3,7 +3,8 @@ LABEL maintainer="whitespots.io"
 
 RUN adduser -D -u 1001 whitespots whitespots
 
-COPY . /app
+COPY requirements.txt /app/
+
 WORKDIR /app
 
 RUN set -xe \
@@ -11,5 +12,7 @@ RUN set -xe \
     && pip install -r requirements.txt \
     && rm -rf /var/cache/apk/*
 
+COPY . /app
+
 USER whitespots
-CMD ["python", "scanner.py"]
+CMD ["python", "main.py"]
