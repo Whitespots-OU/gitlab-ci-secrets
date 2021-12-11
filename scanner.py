@@ -25,6 +25,7 @@ def get_all_groups():
     First important step - get all availiable groups
     :return:
     """
+    print('Getting all groups')
     # Get pages count
     response = requests.get(
         url=f'{gitlab_hostname}/api/v4/groups?all_available=true&page=1&per_page=30',
@@ -55,6 +56,7 @@ def get_all_projects(group_id_list):
     :param group_id_list:
     :return:
     """
+    print('Getting all projects')
     distinct_id_list = list()
 
     for group_id in group_id_list:
@@ -91,6 +93,7 @@ def get_all_pipelines(project_id):
     :param project_id:
     :return:
     """
+    print('Getting all pipelines')
     distinct_id_list = list()
     response = requests.get(
         url=f'{gitlab_hostname}/api/v4/projects/{project_id}/pipelines?scope=finished',
@@ -114,6 +117,7 @@ def get_all_pipeline_jobs(project_id, pipeline_id):
     :param pipeline_id:
     :return:
     """
+    print('Getting all pipeline jobs')
     distinct_id_list = list()
     response = requests.get(
         url=f'{gitlab_hostname}/api/v4/projects/{project_id}/pipelines/{pipeline_id}/jobs',
@@ -166,7 +170,7 @@ def detect_secret_false_positive(finding):
         return True
 
 
-def do_scan_logic():
+def scan_logic():
     findings = list()
     group_ids = get_all_groups()
     project_list = get_all_projects(group_ids)
@@ -200,4 +204,5 @@ def do_scan_logic():
     return findings
 
 
-print(do_scan_logic())
+print(f'First request to {gitlab_hostname}')
+print(scan_logic())
