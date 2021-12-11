@@ -9,6 +9,5 @@ This scanner will help you indentify such repositories and hide sensitive data t
 
 ```
 docker build -t whitespots/gitlab-ci-secrets .
-docker run -it whitespots/gitlab-ci-secrets -e gitlab_private_token=<user_token_read_api> -e gitlab_hostname=https://gitlab.com/
+docker run -it -e "gitlab_private_token=<user_token_read_api>" -e "gitlab_hostname=https://gitlab.com/" whitespots/gitlab-ci-secrets
 ```
-
