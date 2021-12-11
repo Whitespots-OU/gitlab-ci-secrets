@@ -1,0 +1,25 @@
+{
+  "finding": {
+    "password":
+      "((?:\\w+)?pass(?:word)?(?:\\w+)?)(?:=|:)([a-z0-9/\\-_!%*)+($#@,\\.~`]+)",
+    "token":
+      "((?:\\w+)?token(?:\\w+)?)(?:=|:)([a-z0-9/\\-_!%*)+($#@,\\.~`]+)",
+    "private-key":
+      "private key",
+    "google-key":
+      "((?:\\w+)?aiza[a-z0-9/\\-_!%*)($#@,\\.~`]+)"
+  },
+  "false_positive": {
+    "variable": [
+      "^\\$\\w+",
+      "^\\${\\w+",
+      "=$"
+    ],
+    "masked": [
+      "MASKED"
+    ],
+    "gitlab": [
+      "CI_RUNNER_SHORT_TOKEN"
+    ]
+  }
+}
