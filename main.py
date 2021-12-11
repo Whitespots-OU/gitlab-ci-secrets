@@ -43,12 +43,14 @@ def scan_logic():
             jobs = gitlab_scanner.get_all_pipeline_jobs(project_id, pipeline_id)
             traces = gitlab_scanner.get_all_job_traces(project_id, jobs)
             for trace in traces:
-                result = gitlab_scanner.find_sensitive_data(trace)
+                result = gitlab_scanner.find_sensitive_data(trace.get('trace'))
+                job_id = trace.get('job_id')
                 if result is not None and not gitlab_scanner.detect_secret_false_positive(result):
                     finding = {
                         'project_id': project_id,
                         'project_path_with_namespace': project_path_with_namespace,
                         'pipeline_id': pipeline_id,
+                        'link': f'{gitlab_hostname}/{project_path_with_namespace}/-/jobs/{job_id}',
                         'issue': f'Unmasked secret value: {result}'
                     }
                     print(finding)
