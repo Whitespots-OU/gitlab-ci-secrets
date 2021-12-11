@@ -7,6 +7,10 @@ This scanner will help you indentify such repositories and hide sensitive data t
 
 ## How to run
 
+1. Generate your `read_api` token
+![token-generation](/token-generation.jpeg?raw=true "generation")
+2. Run the following 
+
 ```
 docker build -t whitespots/gitlab-ci-secrets .
 docker run -it \
