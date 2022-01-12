@@ -67,12 +67,12 @@ class GitlabScanner:
                         'PRIVATE-TOKEN': self.gitlab_private_token
                     }
                 )
-            try:
-                for item in response.json():
-                    if item.get('id') not in distinct_id_list:
-                        distinct_id_list.append(item)
-            except Exception as ex:
-                print(f'get_all_projects failure: {ex}')
+                try:
+                    for item in response.json():
+                        if item.get('id') not in distinct_id_list:
+                            distinct_id_list.append(item)
+                except Exception as ex:
+                    print(f'get_all_projects failure: {ex}')
         return distinct_id_list
 
     def get_all_pipelines(self, project_id):
